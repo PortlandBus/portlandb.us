@@ -1,6 +1,7 @@
 class VolunteersController < ApplicationController
   before_action :set_volunteer, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:index, :show, :edit, :update, :destroy]
+  before_action :authenticate_admin!, only: [:index, :show, :edit, :update, :destroy]
+
   # GET /volunteers
   # GET /volunteers.json
   def index
