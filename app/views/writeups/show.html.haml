@@ -1,0 +1,16 @@
+%p#notice= notice
+%p
+  %strong Link:
+  = link_to(@writeup.url)
+%p
+  %strong Caption:
+  = @writeup.caption
+%p
+  %strong Description:
+  = simple_format(@writeup.description)
+%p
+  %strong Date:
+  = @writeup.date.to_s
+= link_to 'Edit', edit_writeup_path(@writeup)
+
+= link_to 'Back', writeups_path

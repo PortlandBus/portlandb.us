@@ -1,0 +1,2 @@
+class Writeup < ApplicationRecord
+end

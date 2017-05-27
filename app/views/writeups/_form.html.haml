@@ -1,0 +1,10 @@
+= simple_form_for(@writeup) do |f|
+  = f.error_notification
+  .form-inputs
+    .row
+      .col-lg-4= f.input :url,  placeholder: "http://...."
+      .col-lg-4= f.input :caption, placeholder: "Short caption for the media mention."
+      .col-lg-4= f.input :description, placeholder: "Longer description of the media article."
+      .col-lg-4= f.input :date
+  .form-actions
+    = f.button :submit, "Submit Article"
