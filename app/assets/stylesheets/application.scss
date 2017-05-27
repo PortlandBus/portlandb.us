@@ -13,6 +13,7 @@
  *= require bootstrap.min.css
  *= require bootstrap-theme.min.css
  *= require font-awesome.css
+ *= require_tree .
  */
 // Colors
 $dark-gray: #444;

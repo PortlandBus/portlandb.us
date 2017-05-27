@@ -1,0 +1,13 @@
+-@writeups.reorder(:date).each do |writeup|
+  %hr
+  .writeup
+    .row
+      .col-xs-2
+        %p.writeup-date
+          =writeup.date
+      .col-xs-10
+        %p.writeup-link
+          =link_to writeup.caption, writeup.url, target: "_blank"
+      .col-xs-12
+        %p.writeup-description
+          =writeup.description
