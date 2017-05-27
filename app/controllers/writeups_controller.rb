@@ -1,6 +1,6 @@
 class WriteupsController < ApplicationController
   before_action :set_writeup, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_admin!, only: [:edit, :update, :destroy]
+  before_action :authenticate_admin!, only: [:new, :edit, :update, :destroy]
 
   # GET /writeups
   # GET /writeups.json

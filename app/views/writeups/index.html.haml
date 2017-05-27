@@ -1,8 +1,13 @@
+-admin = current_user && current_user.admin?
+=(link_to '<span class="glyphicon glyphicon-plus"></span> new article'.html_safe, new_writeup_path) if admin
 -@writeups.reorder(:date).each do |writeup|
   %hr
   .writeup
     .row
       .col-xs-2
+        -if admin
+          =link_to '<span class="glyphicon glyphicon-remove"></span>'.html_safe, writeup, method: :delete, :data => { :confirm => "Are you sure you want to permanently delete this writeup entry?" }
+          =link_to '<span class="glyphicon glyphicon-pencil"></span>'.html_safe, edit_writeup_path(writeup)
         %p.writeup-date
           =writeup.date
       .col-xs-10
