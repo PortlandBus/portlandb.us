@@ -1,0 +1,13 @@
+-@tweets.each do |tweet|
+  %hr
+  .tweet
+    .row
+      .col-xs-2
+        %p.tweet-text
+          =tweet.text
+      .col-xs-10
+        %p.tweet-active
+          =tweet.active ? "Active" : "Inactive"
+      .col-xs-12
+        %p.tweet-user
+          =tweet.user.email #FIXME --- this should be a name

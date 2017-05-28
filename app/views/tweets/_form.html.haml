@@ -1,0 +1,8 @@
+= simple_form_for(@tweet) do |f|
+  = f.error_notification
+  .form-inputs
+    .row
+      .col-lg-4= f.input :text,  placeholder: "Write your tweet."
+      .col-lg-4= f.input :active
+  .form-actions
+    = f.button :submit, "Submit Article"
