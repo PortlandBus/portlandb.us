@@ -7,4 +7,9 @@ class ApplicationController < ActionController::Base
       redirect_to root_path, flash: { error: "Not Authorized" }
     end
   end
+
+  def is_admin?
+    @is_admin ||= current_user && current_user.admin?
+  end
+
 end
