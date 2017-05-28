@@ -16,6 +16,7 @@
         <li><%= link_to "about", about_path %></li>
         <li><%= link_to "volunteer", new_volunteer_path %></li>
         <li><%= link_to "media", writeups_path %></li>
+        <li><%= link_to "tweets", tweets_path if current_user.present? %></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
