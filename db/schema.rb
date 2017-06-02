@@ -10,10 +10,76 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170527040153) do
+ActiveRecord::Schema.define(version: 20170602053108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bcc_addresses", force: :cascade do |t|
+    t.integer  "email_id"
+    t.integer  "email_address_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["email_address_id"], name: "index_bcc_addresses_on_email_address_id", using: :btree
+    t.index ["email_id"], name: "index_bcc_addresses_on_email_id", using: :btree
+  end
+
+  create_table "cc_addresses", force: :cascade do |t|
+    t.integer  "email_id"
+    t.integer  "email_address_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["email_address_id"], name: "index_cc_addresses_on_email_address_id", using: :btree
+    t.index ["email_id"], name: "index_cc_addresses_on_email_id", using: :btree
+  end
+
+  create_table "email_addresses", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "emails", force: :cascade do |t|
+    t.string   "subject"
+    t.date     "date"
+    t.string   "message_id"
+    t.text     "decoded"
+    t.text     "text_body"
+    t.text     "html_body"
+    t.text     "raw"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "from_addresses", force: :cascade do |t|
+    t.integer  "email_id"
+    t.integer  "email_address_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["email_address_id"], name: "index_from_addresses_on_email_address_id", using: :btree
+    t.index ["email_id"], name: "index_from_addresses_on_email_id", using: :btree
+  end
+
+  create_table "to_addresses", force: :cascade do |t|
+    t.integer  "email_id"
+    t.integer  "email_address_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["email_address_id"], name: "index_to_addresses_on_email_address_id", using: :btree
+    t.index ["email_id"], name: "index_to_addresses_on_email_id", using: :btree
+  end
+
+  create_table "tweets", force: :cascade do |t|
+    t.text     "text"
+    t.datetime "last_tweeted"
+    t.integer  "tweet_counter"
+    t.boolean  "active",        default: false, null: false
+    t.integer  "user_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.index ["user_id"], name: "index_tweets_on_user_id", using: :btree
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
@@ -53,4 +119,13 @@ ActiveRecord::Schema.define(version: 20170527040153) do
     t.datetime "updated_at",  null: false
   end
 
+  add_foreign_key "bcc_addresses", "email_addresses"
+  add_foreign_key "bcc_addresses", "emails"
+  add_foreign_key "cc_addresses", "email_addresses"
+  add_foreign_key "cc_addresses", "emails"
+  add_foreign_key "from_addresses", "email_addresses"
+  add_foreign_key "from_addresses", "emails"
+  add_foreign_key "to_addresses", "email_addresses"
+  add_foreign_key "to_addresses", "emails"
+  add_foreign_key "tweets", "users"
 end

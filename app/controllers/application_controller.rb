@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  helper_method :is_admin?
   def is_admin?
     @is_admin ||= current_user && current_user.admin?
   end
