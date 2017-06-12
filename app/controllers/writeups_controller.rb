@@ -70,6 +70,6 @@ class WriteupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def writeup_params
-      params.require(:writeup).permit(:url, :caption, :description, :date)
+      params.require(:writeup).permit(:url, :caption, :description, :date, :image)
     end
 end

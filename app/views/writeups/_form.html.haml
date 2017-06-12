@@ -6,5 +6,8 @@
       .col-lg-4= f.input :caption, placeholder: "Short caption for the media mention."
       .col-lg-4= f.input :description, placeholder: "Longer description of the media article."
       .col-lg-4= f.input :date
+      .col-lg-4
+        = f.input :image
+        =image_tag(@writeup.image_url(:thumb)) if @writeup.image?
   .form-actions
     = f.button :submit, "Submit Article"

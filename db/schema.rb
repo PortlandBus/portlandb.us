@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170602053108) do
+ActiveRecord::Schema.define(version: 20170612030117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,18 @@ ActiveRecord::Schema.define(version: 20170602053108) do
     t.datetime "updated_at",       null: false
     t.index ["email_address_id"], name: "index_from_addresses_on_email_address_id", using: :btree
     t.index ["email_id"], name: "index_from_addresses_on_email_id", using: :btree
+  end
+
+  create_table "initiatives", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "user_id"
+    t.date     "deadline"
+    t.boolean  "active",          default: false, null: false
+    t.integer  "time_commitment"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["user_id"], name: "index_initiatives_on_user_id", using: :btree
   end
 
   create_table "to_addresses", force: :cascade do |t|
@@ -117,6 +129,7 @@ ActiveRecord::Schema.define(version: 20170602053108) do
     t.date     "date"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "image"
   end
 
   add_foreign_key "bcc_addresses", "email_addresses"
@@ -125,6 +138,7 @@ ActiveRecord::Schema.define(version: 20170602053108) do
   add_foreign_key "cc_addresses", "emails"
   add_foreign_key "from_addresses", "email_addresses"
   add_foreign_key "from_addresses", "emails"
+  add_foreign_key "initiatives", "users"
   add_foreign_key "to_addresses", "email_addresses"
   add_foreign_key "to_addresses", "emails"
   add_foreign_key "tweets", "users"
